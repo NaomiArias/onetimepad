@@ -1,0 +1,39 @@
+import random
+
+text1 = open('text.txt')
+text = text1.readlines()
+text = str(text)
+text = text.upper()
+text_2 = text.replace('\\N','')
+text_3 = ''
+alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.-'
+alpha_length = len(alphabet)
+for c in text_2:
+    if c in alphabet:
+        text_3 = text_3 + c
+key = ''
+for c in text_3:
+    index = random.randint(0,alpha_length-1)
+    key = key + alphabet[index]
+    print(key)
+cipher = ['']*len(key)
+i = 0
+for c in text_3:
+    cipher[i] = ord(text_3[i]) ^ ord(key[i])
+    i = i+1
+print(cipher)
+cipher_in_bin = ['']*len(key)
+i = 0
+for a in cipher:
+    cipher_in_bin[i] = bin(cipher[i])
+    i = i+1
+print(cipher_in_bin)
+text_reversed = ['']*len(key)
+i = 0
+for c in cipher:
+    text_reversed[i] = c ^ ord(key[i])
+    i = i+1
+print(text_reversed)
+text_final = ''
+for c in text_reversed:
+    text_final = text_final + chr
